@@ -1,0 +1,59 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+{% load portfolio_filters %}
+
+{% block title %}All Projects - Chisanga Kabwe{% endblock %}
+
+{% block content %}
+<section class="projects-section py-5" style="margin-top: 80px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">All Projects</h2>
+                <div class="title-underline"></div>
+                <p class="lead">Browse through all my projects</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            {% for project in projects %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                <div class="project-card">
+                    {% if project.image %}
+                    <div class="project-image">
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                {% if project.github_link %}
+                                <a href="{{ project.github_link }}" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                {% endif %}
+                                {% if project.live_link %}
+                                <a href="{{ project.live_link }}" target="_blank" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="project-content">
+                        <h4>{{ project.title }}</h4>
+                        <p>{{ project.description }}</p>
+                        <div class="project-tech">
+                            {% for tech in project.tech_stack|split:',' %}
+                            <span class="tech-badge">{{ tech|trim }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted">No projects available yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
