@@ -1,5 +1,6 @@
 {% extends 'portfolio/base.html' %}
 {% load static %}
+{% load portfolio_filters %}
 
 {% block content %}
 <section id="home" class="hero-section">
@@ -110,7 +111,7 @@
         </div>
         <div class="row g-4">
             {% for project in projects %}
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:0|multiply:100 }}">
+            <div class="col-lg-4 col-md-6" data-aos="fade-up">
                 <div class="project-card">
                     {% if project.image %}
                     <div class="project-image">
@@ -135,7 +136,7 @@
                         <h4>{{ project.title }}</h4>
                         <p>{{ project.description|truncatewords:20 }}</p>
                         <div class="project-tech">
-                            {% for tech in project.tech_stack.split:',' %}
+                            {% for tech in project.tech_stack|split:',' %}
                             <span class="tech-badge">{{ tech|trim }}</span>
                             {% endfor %}
                         </div>
