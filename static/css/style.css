@@ -19,6 +19,33 @@ body {
     background: var(--dark-bg);
     color: var(--text-light);
     overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+    z-index: -1;
+    animation: backgroundShift 15s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
 }
 
 .gradient-text {
@@ -60,11 +87,23 @@ body {
     position: absolute;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
     top: 10%;
     right: -10%;
     border-radius: 50%;
     animation: float 6s ease-in-out infinite;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+    bottom: 10%;
+    left: -5%;
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite reverse;
 }
 
 @keyframes float {
@@ -90,6 +129,67 @@ body {
 
 .floating-card i {
     color: white;
+}
+
+.profile-image-container {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    animation: float 4s ease-in-out infinite;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid rgba(99, 102, 241, 0.3);
+    box-shadow: 
+        0 0 40px rgba(99, 102, 241, 0.4),
+        0 0 80px rgba(139, 92, 246, 0.2);
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 0 60px rgba(99, 102, 241, 0.6),
+        0 0 120px rgba(139, 92, 246, 0.3);
+}
+
+.profile-ring {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border: 2px solid rgba(99, 102, 241, 0.3);
+    border-radius: 50%;
+    animation: pulse-ring 3s ease-in-out infinite;
+}
+
+.profile-ring-2 {
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    right: -40px;
+    bottom: -40px;
+    border: 2px solid rgba(139, 92, 246, 0.2);
+    border-radius: 50%;
+    animation: pulse-ring 3s ease-in-out infinite 1.5s;
+}
+
+@keyframes pulse-ring {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.5;
+    }
 }
 
 .hero-buttons .btn {
@@ -404,6 +504,99 @@ section {
     max-width: 400px;
 }
 
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: float-particle 20s infinite ease-in-out;
+}
+
+.particle-1 {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.6), transparent);
+    top: 10%;
+    left: 10%;
+    animation-duration: 15s;
+    animation-delay: 0s;
+}
+
+.particle-2 {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.6), transparent);
+    top: 60%;
+    left: 80%;
+    animation-duration: 18s;
+    animation-delay: 2s;
+}
+
+.particle-3 {
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.5), transparent);
+    top: 30%;
+    left: 60%;
+    animation-duration: 22s;
+    animation-delay: 4s;
+}
+
+.particle-4 {
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.5), transparent);
+    top: 80%;
+    left: 20%;
+    animation-duration: 17s;
+    animation-delay: 1s;
+}
+
+.particle-5 {
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.4), transparent);
+    top: 50%;
+    left: 40%;
+    animation-duration: 20s;
+    animation-delay: 3s;
+}
+
+.particle-6 {
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.7), transparent);
+    top: 20%;
+    left: 90%;
+    animation-duration: 16s;
+    animation-delay: 5s;
+}
+
+@keyframes float-particle {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(100px, -100px) rotate(90deg);
+    }
+    50% {
+        transform: translate(-50px, -200px) rotate(180deg);
+    }
+    75% {
+        transform: translate(-150px, -50px) rotate(270deg);
+    }
+}
+
 @media (max-width: 768px) {
     .section-title {
         font-size: 2rem;
@@ -415,5 +608,10 @@ section {
     
     .skills-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .profile-image-container {
+        width: 250px;
+        height: 250px;
     }
 }
