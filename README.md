@@ -69,22 +69,6 @@ media/                  # User-uploaded files
 - URL: `/admin/`
 - Admin account created - check console output or create a new superuser with `python manage.py createsuperuser`
 
-## Recent Changes (October 22, 2025)
-- Created complete Django portfolio website from scratch
-- Extracted and organized project screenshots from user's zip file
-- Implemented custom template filters for string manipulation
-- Set up WhiteNoise for static file serving
-- Added 6 projects with images and descriptions
-- Added 14 technical skills with proficiency levels
-- Configured Django admin for easy content management
-- Applied modern dark theme with gradient accents
-- Implemented smooth scroll animations with AOS library
-
-## User Preferences
-- Modern, cool-looking design with dark theme
-- Gradient color scheme (purple/indigo)
-- Smooth animations and transitions
-- Professional presentation of work
 
 ## Architecture Decisions
 - **WhiteNoise** for static file serving (simple deployment)
@@ -97,10 +81,9 @@ media/                  # User-uploaded files
 ## Contact Information
 - **GitHub**: https://github.com/chisangasage
 - **LinkedIn**: https://www.linkedin.com/in/chisanga-k
-- **Location**: Liaoning Province, Fushun City, China
 
 ## Notes
-- Server runs on port 5000
+- Server runs on port 8000
 - Media files are served from `/media/` in development
 - Static files collected to `/staticfiles/` for production
 - Sample data script included: `add_sample_data.py`
