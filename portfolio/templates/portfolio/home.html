@@ -96,7 +96,9 @@
                         <div class="skill-item"><i class="fab fa-python"></i> Python</div>
                         <div class="skill-item"><i class="fab fa-java"></i> Java</div>
                         <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
+                        <div class="skill-item"><i class="fa-brands fa-golang"></i> GO</div>
                         <div class="skill-item"><i class="fas fa-database"></i> SQL</div>
+                        <div class="skill-item"><i class="fa-brands fa-aws"></i> AWS</div>
                     </div>
                 </div>
             </div>
@@ -154,6 +156,12 @@
             {% endfor %}
         </div>
     </div>
+    <div class="text-center mt-8">
+        <a href="{% url 'projects' %}">
+            View All Projects
+            <i class="fa-solid fa-arrow-down ml-2"> </i>
+        </a>
+    </div>
 </section>
 
 <section id="skills" class="skills-section py-5">
@@ -165,25 +173,27 @@
             </div>
         </div>
         <div class="row">
-            {% regroup skills by category as skill_groups %}
-            {% for group in skill_groups %}
+        {% for category in categories %}
             <div class="col-lg-6 mb-4" data-aos="fade-up">
-                <div class="skill-category">
-                    <h4 class="mb-4">{{ group.grouper|capfirst }}</h4>
-                    {% for skill in group.list %}
-                    <div class="skill-bar-container mb-3">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span>{{ skill.name }}</span>
-                            <span>{{ skill.proficiency }}%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: {{ skill.proficiency }}%"></div>
-                        </div>
+            <div class="skill-category bg-white/60 backdrop-blur-sm shadow rounded-2xl p-4 hover:shadow-lg transition">
+                <h4 class="mb-4 text-indigo-600 font-semibold text-lg">{{ category.name }}</h4>
+
+                {% for skill in category.skills.all %}
+                <div class="skill-bar-container mb-3">
+                    <div class="d-flex justify-content-between mb-2">
+                    <span><i class="{{ skill.icon }} me-1"></i> {{ skill.name }}</span>
+                    <span>{{ skill.proficiency }}%</span>
                     </div>
-                    {% endfor %}
+                    <div class="skill-bar bg-gray-200 rounded-full h-2">
+                    <div class="skill-progress bg-indigo-600 h-2 rounded-full transition-all duration-500"
+                        style="width: {{ skill.proficiency }}%">
+                    </div>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+            </div>
+        {% endfor %}
         </div>
     </div>
 </section>

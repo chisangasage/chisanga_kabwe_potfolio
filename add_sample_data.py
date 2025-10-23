@@ -7,7 +7,7 @@ django.setup()
 from portfolio.models import Project, Skill
 
 Project.objects.all().delete()
-Skill.objects.all().delete()
+#Skill.objects.all().delete()
 
 projects_data = [
     {
@@ -61,27 +61,29 @@ projects_data = [
     },
 ]
 
+
+
 for project_data in projects_data:
     Project.objects.create(**project_data)
-
+"""
 skills_data = [
-    {'name': 'Python', 'category': 'backend', 'proficiency': 90, 'icon': 'fab fa-python'},
-    {'name': 'Django', 'category': 'backend', 'proficiency': 85, 'icon': 'fas fa-server'},
-    {'name': 'Java', 'category': 'backend', 'proficiency': 80, 'icon': 'fab fa-java'},
-    {'name': 'Go', 'category': 'backend', 'proficiency': 70, 'icon': 'fab fa-golang'},
+    {'name': 'Python', 'category': 'Languages', 'proficiency': 95, 'icon': 'fab fa-python'},
+    {'name': 'Django', 'category': 'web_dev', 'proficiency': 85, 'icon': 'fas fa-server'},
+    {'name': 'Java', 'category': 'Languages', 'proficiency': 80, 'icon': 'fab fa-java'},
+    {'name': 'Go', 'category': 'Languages', 'proficiency': 70, 'icon': 'fab fa-golang'},
     
-    {'name': 'JavaScript', 'category': 'frontend', 'proficiency': 85, 'icon': 'fab fa-js'},
-    {'name': 'HTML/CSS', 'category': 'frontend', 'proficiency': 90, 'icon': 'fab fa-html5'},
-    {'name': 'Bootstrap', 'category': 'frontend', 'proficiency': 85, 'icon': 'fab fa-bootstrap'},
-    {'name': 'React', 'category': 'frontend', 'proficiency': 75, 'icon': 'fab fa-react'},
+    {'name': 'JavaScript', 'category': 'Languages', 'proficiency': 85, 'icon': 'fab fa-js'},
+    {'name': 'HTML/CSS', 'category': 'web_dev', 'proficiency': 90, 'icon': 'fab fa-html5'},
+    {'name': 'Bootstrap', 'category': 'web_dev', 'proficiency': 85, 'icon': 'fab fa-bootstrap'},
+    {'name': 'React', 'category': 'web_dev', 'proficiency': 75, 'icon': 'fab fa-react'},
     
     {'name': 'MySQL', 'category': 'database', 'proficiency': 85, 'icon': 'fas fa-database'},
     {'name': 'PostgreSQL', 'category': 'database', 'proficiency': 80, 'icon': 'fas fa-database'},
     {'name': 'SQLite', 'category': 'database', 'proficiency': 85, 'icon': 'fas fa-database'},
     
-    {'name': 'Git', 'category': 'tools', 'proficiency': 85, 'icon': 'fab fa-git-alt'},
-    {'name': 'Linux', 'category': 'tools', 'proficiency': 80, 'icon': 'fab fa-linux'},
-    {'name': 'Docker', 'category': 'tools', 'proficiency': 70, 'icon': 'fab fa-docker'},
+    {'name': 'Git', 'category': 'cloud_&_tools', 'proficiency': 85, 'icon': 'fab fa-git-alt'},
+    {'name': 'Linux', 'category': 'cloud_&_tools', 'proficiency': 80, 'icon': 'fab fa-linux'},
+    {'name': 'Docker', 'category': 'cloud_&_tools', 'proficiency': 70, 'icon': 'fab fa-docker'},
 ]
 
 for skill_data in skills_data:
@@ -90,3 +92,16 @@ for skill_data in skills_data:
 print("Sample data added successfully!")
 print(f"Created {Project.objects.count()} projects")
 print(f"Created {Skill.objects.count()} skills")
+
+
+CATEGORY_CHOICES = [
+        ('Web Development', 'web_dev'),
+        ('Programming Languages', 'Languages'),
+        ('database management', 'Database'),
+        ('Cloud & DevOps', 'cloud_&_tools'),
+        ('AI/ML Tools', 'AI_&_ML'),
+        ('Others Skills', 'Others_skills'),
+    ]
+
+
+"""

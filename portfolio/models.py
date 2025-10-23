@@ -16,17 +16,21 @@ class Project(models.Model):
     
     def __str__(self):
         return self.title
+    
+class SkillCategory(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    order = models.PositiveIntegerField(default=0, help_text="Display order (lower = first)")
+
+    class Meta:
+        ordering = ['order']  
+        verbose_name_plural = "Skill Categories"
+
+    def __str__(self):
+        return self.name
 
 class Skill(models.Model):
-    CATEGORY_CHOICES = [
-        ('frontend', 'Frontend'),
-        ('backend', 'Backend'),
-        ('database', 'Database'),
-        ('tools', 'Tools & Others'),
-    ]
-    
     name = models.CharField(max_length=100)
-    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    category = models.ForeignKey(SkillCategory, on_delete=models.CASCADE, related_name='skills')
     proficiency = models.IntegerField(default=50, help_text="Proficiency level (0-100)")
     icon = models.CharField(max_length=100, blank=True, help_text="Font Awesome icon class")
     
@@ -49,3 +53,6 @@ class ContactMessage(models.Model):
     
     def __str__(self):
         return f"{self.name} - {self.subject}"
+
+
+

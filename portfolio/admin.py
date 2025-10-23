@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Skill, ContactMessage
+from .models import Project, Skill, ContactMessage, SkillCategory
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
@@ -22,3 +22,8 @@ class ContactMessageAdmin(admin.ModelAdmin):
     search_fields = ['name', 'email', 'subject', 'message']
     list_editable = ['is_read']
     readonly_fields = ['created_at']
+
+@admin.register(SkillCategory)
+class SkillCategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'order']
+    list_editable = ['order']

@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Project, Skill, ContactMessage
+from .models import Project, SkillCategory, ContactMessage
 
 def home(request):
-    projects = Project.objects.filter(featured=True)[:6]
-    skills = Skill.objects.all()
+    projects = Project.objects.filter(featured=True)[:3]
+    categories = SkillCategory.objects.prefetch_related('skills').all()
     
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -26,7 +26,7 @@ def home(request):
     
     context = {
         'projects': projects,
-        'skills': skills,
+        'categories': categories,
     }
     return render(request, 'portfolio/home.html', context)
 
